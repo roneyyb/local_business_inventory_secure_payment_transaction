@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     loading:false,
     modalvisible:'false',
     error:'',
-    show_fingerprint:false
+    show_fingerprint:false,
+    user_id:''
 }
 
 export default (state=INITIAL_STATE, action) => {
@@ -21,7 +22,7 @@ export default (state=INITIAL_STATE, action) => {
         case AUTHENTICATION_FAIL:
             return {...state, error:action.payload, loading:false};
         case AUTHENTICATION_SUCCESS:
-            return {...state, loading:false, show_fingerprint:true};
+            return {...state, loading:false, show_fingerprint:true,user_id:action.payload};
         case RESET:
             return {...INITIAL_STATE};
         default:

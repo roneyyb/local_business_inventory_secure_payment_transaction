@@ -27,9 +27,6 @@ class Paybill extends Component {
   //   this.props.onReset();
   // }
 
-     componentWillUnmount() {
-      this.props.onReset();
-     }
     onUseridChanges = (userid) => {
         this.props.onUseridChange(userid);
     }
@@ -47,18 +44,24 @@ class Paybill extends Component {
           let results = await LocalAuthentication.authenticateAsync();
           if (results.success) {
             console.log('Fingerprint success');
-            const url = `http://localhost:3000/otpgeneration`;
+            const url = `http://192.168.43.24:3000/otpgeneration`;
             fetch(url,{
+              method: 'POST',
               headers: {
                 Accept: 'application/json',
-                'Content-Type': 'application/json'                
+                'Content-Type': 'application/json'
               },
               body:JSON.stringify({
-                check:1
+                check:1,
+                userid:this.props.user_id
               })
-            }).then(res => res.json())
+            })
+            .then(res => res.json())
             .then(res => {
-              this.props.navigation.navigate('Otp',{userid: res.userid});
+              console.log(res);
+              const userid= this.props.user_id;
+              this.props.onReset();
+              this.props.navigation.navigate('Otp',{userid});
             })
             .catch(error => {
               console.log('error while requesting otp =>',error);
@@ -194,7 +197,8 @@ const mapStateToProps = (state) => {
         password: state.paybill.password,
         loading: state.paybill.loading,
         show_fingerprint: state.paybill.show_fingerprint,
-        error: state.paybill.error
+        error: state.paybill.error,
+        user_id:state.paybill.user_id
     }
 }
 export default connect(mapStateToProps, {onPasswordChange,onUseridChange, onButtonPress,onReset})(Paybill);

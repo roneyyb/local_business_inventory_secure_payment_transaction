@@ -46,7 +46,7 @@ const stack = createStackNavigator({
     itemlist: Itemlist
 },
 {
-    initialRouteName:'Otp'
+    initialRouteName:'main'
 });
 
 const AppContainer = createAppContainer(stack);

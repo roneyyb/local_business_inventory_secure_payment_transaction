@@ -21,6 +21,7 @@ export const onUseridChange = text => ({
     .split(`:`)
     .shift()
     .concat(`:3000/bankauthentication`)}`;
+    console.log(url);
     return dispatch => {
     dispatch({ type:LOADING, payload:true });
      fetch(url, {
@@ -44,6 +45,7 @@ export const onUseridChange = text => ({
           }
           return dispatch({
             type: AUTHENTICATION_SUCCESS,
+            payload: res.userid
           });
         })
       .catch((error) => {

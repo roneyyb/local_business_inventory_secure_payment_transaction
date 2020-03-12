@@ -16,15 +16,15 @@ export default class Add extends Component {
         product_image: ''
     }
     static navigationOptions = ({navigation}) => ({
-        headerTitle: (
+        headerTitle: () => 
             <Text style={{
                 fontSize: 20,
                 color: '#8D8D8C',
             }}>
                 {'Add Product'}
             </Text>
-        ),
-        headerRight: (
+        ,
+        headerRight: () => 
             <TouchableOpacity
             onPress={
             navigation.getParam('creating')
@@ -32,7 +32,6 @@ export default class Add extends Component {
           >
             <MaterialIcons name='done' style={{marginRight:20}} size={28} width={15} color='#6666FF' />
           </TouchableOpacity>
-        ) 
     })
 
     componentDidMount() {
@@ -51,7 +50,7 @@ export default class Add extends Component {
             expiryDate: this.state.product_expiry,
             desc: this.state.product_description
         }
-         
+         console.log(data);
         const url = `http://${manifest.debuggerHost
         .split(`:`)
         .shift()

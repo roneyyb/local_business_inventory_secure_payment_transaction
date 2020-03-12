@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { View, Text, TouchableOpacity, ScrollView, Image } from 'react-native';
-import { Card, Button} from 'react-native-elements';
+import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
+import Button from './components/button';
 
 import { Updatelist, clearAll } from '../actions/itemlistaction';
 
@@ -10,15 +11,15 @@ class ItemList extends Component {
         super(props);   
     }
     static navigationOptions = ({navigation}) => ({
-        headerTitle: (
+        headerTitle: () => 
             <Text style={{
                 fontSize: 20,
                 color: '#8D8D8C',
             }}>
                 {'Total Product'}
             </Text>
-        ),
-        headerRight: (
+        ,
+        headerRight: () => 
             <Text  style={{
                 fontSize: 20,
                 color: '#8D8D8C',
@@ -26,7 +27,6 @@ class ItemList extends Component {
             }}>
                 {navigation.getParam('totalbill')>0 ? `Bill - ${navigation.getParam('totalbill')}` : ''}
             </Text>
-        ) 
     })
     componentDidMount() {
         console.log(this.props.itemlist);
@@ -44,10 +44,10 @@ class ItemList extends Component {
     }
 
 
-    renderItems = (item) => {
+    renderItems = (item,index) => {
         console.log(item);
         return(
-            <Card key={item.product.id}> 
+            <Card key={index }> 
             <Text style={{fontSize:20}}>{`${item.product.name}`}</Text>
             <Image source={{uri:item.product.image }} style={{height:200, width:200}}/>
             <Text style={{fontSize:20}}>{`Product Description - ${item.product.desc}`}</Text>
@@ -57,26 +57,44 @@ class ItemList extends Component {
         );
     }
 
+    addItem = () => {
+        this.props.navigation.navigate('qrcode');
+    }
+
+    settlePayment = () => {
+        this.props.navigation.navigate('paybill');
+    }
     render() {
         return (
             <ScrollView >
-                {this.props.itemlist.map((item) => this.renderItems(item))}
+                {this.props.itemlist.map((item,index) => this.renderItems(item,index))}
                 
                 <View style={{alignItems:'center', justifyContent:'center', marginTop:10}}>
-                <TouchableOpacity style={{ elevation:4, marginTop:10,height:50, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
+                {/* <TouchableOpacity style={{ elevation:4, marginTop:10,height:50, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
               onPress={() => this.props.navigation.navigate('qrcode')}
                 >
                     <Text style={{fontSize:20}}>{'Add more item'}</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={{ elevation:4,marginBottom:10, height:50, marginTop:10, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
+                </TouchableOpacity> */}
+                <Button
+            buttonLabel={'Add more item'}
+            disabled={false}
+            onPressaction={this.addItem}
+            style={{width:200}}
+          />
+             <Button
+            buttonLabel={'Settle Payment'}
+            disabled={false}
+            onPressaction={this.settlePayment}
+            style={{ width:200, marginTop:20, marginBottom:20}}
+          />
+                {/* <TouchableOpacity style={{ elevation:4,marginBottom:10, height:50, marginTop:10, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
               onPress={() => 
                 {
-                    this.props.clearAll();
                     this.props.navigation.navigate('paybill');
                 }}
                 >
                     <Text style={{fontSize:20}}>{'Settle Payment'}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 </View>
                 </ScrollView>
         );

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Card, Input, Button } from 'react-native-elements';
+import { Input} from 'react-native-elements';
+import Button from './components/button';
 import Constants from 'expo-constants';
 
 const { manifest } = Constants;
@@ -14,14 +15,14 @@ export default class ItemList extends Component {
         console.log(props);
     }
     static navigationOptions = ({navigation}) => ({
-        headerTitle: (
+        headerTitle: () => {
             <Text style={{
                 fontSize: 20,
                 color: '#8D8D8C',
             }}>
                 {'Item Details'}
             </Text>
-        )
+        }
     })
     componentWillUnmount(){
         console.log('item unmount');
@@ -49,14 +50,20 @@ export default class ItemList extends Component {
                 onChangeText={(text) => {this.setState({quantity: text})}}
                 value={this.state.quantity} 
                 />
-                 <TouchableOpacity style={{ elevation:4,marginBottom:10, height:50, marginTop:10, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
+                 {/* <TouchableOpacity style={{ elevation:4,marginBottom:10, height:50, marginTop:10, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
               onPress={() => 
                 {
                     this.onSubmit()
                 }}
                 >
                     <Text style={{fontSize:20}}>{'Submit'}</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
+                <Button
+            buttonLabel={'Submit'}
+            disabled={false}
+            onPressaction={this.onSubmit}
+            style={{marginTop:40, width:100}}
+          />
                 </View>
             </ScrollView>
         );
