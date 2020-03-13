@@ -12,7 +12,6 @@ class Otp extends Component {
     constructor(props) {
         super(props);
         this.state = {userid:props.navigation.getParam('userid','123'), loading:false, message:'', visibleWorkModal:0, auth:false};
-
     }
 
     onSubmitotp = () => {

@@ -67,6 +67,8 @@ class Paybill extends Component {
               console.log('error while requesting otp =>',error);
             });
           
+          } else {
+
           }
         } catch (e) {
           console.log(e);
@@ -89,7 +91,7 @@ class Paybill extends Component {
         }
         return (
           <Button
-            buttonLabel={'Login'}
+            buttonLabel={'Pay'}
             disabled={this.props.show_fingerprint}
             onPressaction={this.onButtonPresss}
             style={{ marginTop: upadding }}
@@ -97,6 +99,9 @@ class Paybill extends Component {
         );
       };
 
+      onSignuppress = () => {
+        this.props.navigation.navigate('register');
+      }
     render() {
         return (
             <LinearGradient
@@ -108,7 +113,7 @@ class Paybill extends Component {
                   colors={['#ADD8E6', '#add8e6E6', '#add8e6CC']}
                   style={{ alignItems: 'center', justifyContent: 'center', flex: 4 }}
                 >
-                  <Text style={styles.titleStyle}>{'Bank'}</Text>
+                  <Text style={styles.titleStyle}>{'Bank  '}</Text>
                 </LinearGradient>
                 <View style={{ padding: upadding, flex: 6 }}>
        
@@ -121,7 +126,7 @@ class Paybill extends Component {
                       paddingBottom: upadding/2,
                     }}
                   >
-                    <Text style={{ color: 'red', fontSize:upadding * 1.5, fontFamily:'cursive' }}>{this.props.errors}</Text>
+                    <Text style={{ color: 'red', fontSize:upadding * 1.2}}>{this.props.error}</Text>
                   </View>
                 ) : (
                   <View />
@@ -130,6 +135,7 @@ class Paybill extends Component {
                     <Textinput
                       placeholder={'Userid'}
                       error={''}
+                      secureTextEntry={true}
                       value={this.props.userid}
                       onChange={this.onUseridChanges}
                     />
@@ -144,6 +150,38 @@ class Paybill extends Component {
                     />
                   </View>
                   <View>{this.loadingorbutton()}</View>
+                  <View
+              style={{
+                flexDirection: 'row',
+                marginTop: upadding * 2,
+                alignItems: 'center'
+              }}
+            >
+              <View
+                style={{ flex: 2, height: 0, color: 'black', borderWidth: 0.5 }}
+              />
+              <View
+                style={{
+                  flex: 4,
+                  justifyContent: 'center',
+                  alignItems: 'center'
+                }}
+              >
+                <Text style={{ fontSize: upadding * 1.2, color: 'black'  }}>
+                  {'unregistered user ?'}
+                </Text>
+              </View>
+              <View
+                style={{ flex: 2, height: 0, color: 'black', borderWidth: 0.5 }}
+              />
+            </View>
+            <View>
+              <Button
+                buttonLabel={'Register to bank'}
+                style={{ marginTop: upadding }}
+                onPressaction={this.onSignuppress}
+              />
+            </View>
                   {/* <View
                     style={{
                       flexDirection: 'row',
@@ -161,10 +199,8 @@ class Paybill extends Component {
                     />
                   </View> */}
                 </View>
-              </View>
-              <Modal
+                <Modal
           animationType="slide"
-          transparent={true}
           visible={this.props.show_fingerprint}
           onShow={this.scanFingerPrint}>
           <View style={styles.modal}>
@@ -178,13 +214,15 @@ class Paybill extends Component {
                 onPress={async () => {
                   LocalAuthentication.cancelAuthenticate();
                   this.props.onReset();
-                  this.props.navigation.navigate('Item');
+                  this.props.navigation.navigate('itemlist');
                 }}>
                 <Text style={{ color: 'red', fontSize: 16 }}>Cancel</Text>
               </TouchableHighlight>
             </View>
           </View>
         </Modal>
+              </View>
+             
             </LinearGradient>
           );
     }
@@ -234,7 +272,7 @@ const styles = StyleSheet.create({
     },
     textStyle: {
       color: 'black',
-      fontFamily:'cursive',
+      //fontFamily:'cursive',
       fontSize: upadding * 1.6
     },
     Individualcontainerstyle: {
@@ -244,7 +282,7 @@ const styles = StyleSheet.create({
       fontSize: upadding * 3,
       fontWeight: 'bold',
       color: 'black',
-      fontFamily:'cursive',
+      //fontFamily:'',
       marginBottom: upadding
     },
     inputStyle: {

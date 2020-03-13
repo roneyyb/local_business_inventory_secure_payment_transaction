@@ -12,6 +12,7 @@ import AddProduct from '../screen/addproduct';
 import Paybill from '../screen/Paybill';
 import Itemlist from '../screen/itemlist';
 import Otp from '../screen/otp';
+import Register from '../screen/register';
 import reducer from '../reducer';
 
 const stack = createStackNavigator({
@@ -43,6 +44,10 @@ const stack = createStackNavigator({
         }
     },
     addproduct: AddProduct,
+    register: {
+        screen: Register,
+        navigationOptions: { header: () => null}
+    },
     itemlist: Itemlist
 },
 {

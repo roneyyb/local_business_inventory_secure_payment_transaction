@@ -70,11 +70,7 @@ class ItemList extends Component {
                 {this.props.itemlist.map((item,index) => this.renderItems(item,index))}
                 
                 <View style={{alignItems:'center', justifyContent:'center', marginTop:10}}>
-                {/* <TouchableOpacity style={{ elevation:4, marginTop:10,height:50, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
-              onPress={() => this.props.navigation.navigate('qrcode')}
-                >
-                    <Text style={{fontSize:20}}>{'Add more item'}</Text>
-                </TouchableOpacity> */}
+            
                 <Button
             buttonLabel={'Add more item'}
             disabled={false}
@@ -87,14 +83,7 @@ class ItemList extends Component {
             onPressaction={this.settlePayment}
             style={{ width:200, marginTop:20, marginBottom:20}}
           />
-                {/* <TouchableOpacity style={{ elevation:4,marginBottom:10, height:50, marginTop:10, width:200, borderRadius:3, backgroundColor:'white', alignItems:'center', justifyContent:'center'}}
-              onPress={() => 
-                {
-                    this.props.navigation.navigate('paybill');
-                }}
-                >
-                    <Text style={{fontSize:20}}>{'Settle Payment'}</Text>
-                </TouchableOpacity> */}
+              
                 </View>
                 </ScrollView>
         );
