@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   StyleSheet
 } from 'react-native';
+import Header from './components/header';
 import { LinearGradient } from 'expo-linear-gradient';
 import Textinput from './components/textinput';
 import Button from './components/button';
@@ -139,116 +140,121 @@ export default class SignUp extends React.Component {
     }
     return (
       <Button
-        buttonLabel={'Signup'}
-        style={{ marginTop: upadding }}
+        buttonLabel={'Signup '}
+        style={{ marginTop: upadding*2, borderRadius:24 }}
         onPressaction={this.onSignups.bind(this)}
       />
     );
   }
   render() {
     return (
-      <LinearGradient
-        colors={['#ADD8E6', '#add8e6E6', '#add8e6CC']}
-        style={styles.linearGradient}
-      >
-        <KeyboardAvoidingView behavior='padding'>
-          <View style={styles.insideContainer}>
-          
-          <LinearGradient
-            colors={['#ADD8E6', '#add8e6E6', '#add8e6CC']}
-            style={{ alignItems: 'center', justifyContent: 'center', flex: 4 }}
-          >
-            <Text style={styles.titleStyle}>{'BANK '}</Text>
-          </LinearGradient>
-            <View style={{ padding: upadding, flex: 8 }}>
-            {this.state.error.length>0
-             ? (
-            <View
-              style={{
-                justifyContent: 'center',
-                alignItems: 'center',
-                paddingTop: upadding/2,
-                paddingBottom:upadding/2
-              }}
-            >
-        <Text style={{ color: 'red' , fontSize:upadding * 1.2, fontWeight:'400'}}>{this.state.error}</Text>
+      <Header type={'login'} navigation={this.props.navigation}>
+        <View style={styles.linearGradient}>
+          <KeyboardAvoidingView behavior="padding">
+            <View style={styles.insideContainer}>
+              <View
+                style={{
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flex: 4,
+                }}>
+                <Text style={styles.titleStyle}>{'BANK '}</Text>
+              </View>
+              <View style={{padding: upadding, flex: 8}}>
+                {this.state.error.length > 0 ? (
+                  <View
+                    style={{
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      paddingTop: upadding / 2,
+                      paddingBottom: upadding / 2,
+                    }}>
+                    <Text
+                      style={{
+                        color: 'red',
+                        fontSize: upadding * 1.2,
+                        fontWeight: '400',
+                      }}>
+                      {this.state.error}
+                    </Text>
+                  </View>
+                ) : (
+                  <View />
+                )}
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    placeholder={'username'}
+                    error={''}
+                    value={this.state.username}
+                    onChange={this.onChangeusernames.bind(this)}
+                    autocorrect={false}
+                  />
+                </View>
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    onChange={this.onChangeemails.bind(this)}
+                    placeholder="Email"
+                    error={''}
+                    autocorrect={false}
+                    value={this.state.email}
+                  />
+                </View>
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    onChange={this.onChangeuserids.bind(this)}
+                    error={''}
+                    placeholder="userid"
+                    secureTextEntry={true}
+                    autocorrect={false}
+                    value={this.state.userid}
+                  />
+                </View>
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    onChange={this.onChangepasswords.bind(this)}
+                    error={''}
+                    secureTextEntry={true}
+                    autocorrect={false}
+                    placeholder="password"
+                    value={this.state.password}
+                  />
+                </View>
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    onChange={this.onChangeconfirmpasswords.bind(this)}
+                    error={this.state.error1}
+                    secureTextEntry={true}
+                    autocorrect={false}
+                    placeholder="confirmpassword"
+                    value={this.state.confirmpassword}
+                  />
+                </View>
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    onChange={this.onChangenumbers.bind(this)}
+                    error={this.state.error2}
+                    secureTextEntry={true}
+                    autocorrect={false}
+                    placeholder="phone-number"
+                    value={this.state.number}
+                  />
+                </View>
+                <View style={styles.Individualcontainerstyle}>
+                  <Textinput
+                    onChange={this.onChangebalances.bind(this)}
+                    error={''}
+                    secureTextEntry={true}
+                    autocorrect={false}
+                    placeholder="account-balance"
+                    value={this.state.balance}
+                  />
+                </View>
+                <View>{this.loadingorbutton()}</View>
+              </View>
             </View>
-          ) : (
-            <View />
-          )}
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  placeholder={'username'}
-                  error={''}
-                  value={this.state.username}
-                  onChange={this.onChangeusernames.bind(this)}
-                  autocorrect={false}
-                />
-              </View>
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  onChange={this.onChangeemails.bind(this)}
-                  placeholder='Email'
-                  error={''}
-                  autocorrect={false}
-                  value={this.state.email}
-                />
-              </View>
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  onChange={this.onChangeuserids.bind(this)}
-                  error={''}
-                  placeholder='userid'
-                  secureTextEntry={true}
-                  autocorrect={false}
-                  value={this.state.userid}
-                />
-              </View>
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  onChange={this.onChangepasswords.bind(this)}
-                  error={''}
-                  secureTextEntry={true}
-                  autocorrect={false}
-                  placeholder='password'
-                  value={this.state.password}
-                />
-              </View>
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  onChange={this.onChangeconfirmpasswords.bind(this)}
-                  error={this.state.error1}
-                  secureTextEntry={true}
-                  autocorrect={false}
-                  placeholder='confirmpassword'
-                  value={this.state.confirmpassword}
-                />
-              </View>
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  onChange={this.onChangenumbers.bind(this)}
-                  error={this.state.error2}
-                  secureTextEntry={true}
-                  autocorrect={false}
-                  placeholder='phone-number'
-                  value={this.state.number}
-                />
-              </View>
-              <View style={styles.Individualcontainerstyle}>
-                <Textinput
-                  onChange={this.onChangebalances.bind(this)}
-                  error={''}
-                  secureTextEntry={true}
-                  autocorrect={false}
-                  placeholder='account-balance'
-                  value={this.state.balance}
-                />
-              </View>
-              <View>{this.loadingorbutton()}</View>
-            </View>
-          </View>
-        </KeyboardAvoidingView>
-      </LinearGradient>
+          </KeyboardAvoidingView>
+        </View>
+      </Header>
     );
   }
 }
@@ -276,7 +282,6 @@ const styles = StyleSheet.create({
     width: SCREEN_WIDTH * 0.9,
     borderRadius: upadding,
     backgroundColor: 'white',
-    elevation: 5,
     marginTop: upadding * 2
   },
   textStyle: {

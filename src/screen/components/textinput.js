@@ -5,7 +5,8 @@ import {
   StyleSheet,
   Dimensions,
   TouchableWithoutFeedback,
-  TextInput
+  TextInput,
+  StatusBar
 } from 'react-native';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
@@ -24,11 +25,7 @@ export default class Textinput extends Component {
       <View
         style={[
           styles.containerStyle,
-          this.props.styles,
-          {
-            borderColor: this.state.bordercolor,
-            borderWidth: this.state.borderWidth
-          }
+          this.props.styles
         ]}
       >
         <View style={styles.textInputStyle}>
@@ -85,7 +82,8 @@ export default class Textinput extends Component {
 const styles = StyleSheet.create({
   containerStyle: {
     borderRadius: upadding * 1.5,
-    backgroundColor: '#add8e633',
+    borderBottomWidth:0.5,
+    borderBottomColor:'#A52745',
     height: upadding * 3.5,
     flexDirection: 'row'
   },

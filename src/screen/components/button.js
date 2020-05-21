@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   View,
   Text,
   StyleSheet,
@@ -13,17 +13,16 @@ const upadding = Math.round(SCREEN_WIDTH * 0.03);
 export default class Button extends Component {
   render() {
     return (
-      <TouchableWithoutFeedback
-        style={{}}
+      <TouchableOpacity
+      activeOpacity={0.9}
+        style={[styles.buttonContainerStyle,this.props.style]}
         onPress={() => {
           this.props.onPressaction();
         }}
         disabled={this.props.disabled}
       >
-        <View style={[styles.buttonContainerStyle, this.props.style]}>
           <Text style={styles.buttonLabelStyle}>{this.props.buttonLabel}</Text>
-        </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     );
   }
 }
@@ -32,13 +31,15 @@ const styles = StyleSheet.create({
   buttonContainerStyle: {
     height: upadding * 3,
     elevation: upadding / 4,
-    borderRadius: upadding * 1.5,
+    borderRadius: upadding *0.2,
+    padding:10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#add8ec'
+    backgroundColor: '#A52745'
   },
   buttonLabelStyle: {
-    fontSize: upadding * 1.5,
-    color: 'black'
+    fontSize: upadding *1.5,
+    color: 'white',
+    fontWeight:'bold'
   }
 });

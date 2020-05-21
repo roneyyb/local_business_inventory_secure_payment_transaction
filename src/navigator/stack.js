@@ -29,7 +29,10 @@ const stack = createStackNavigator({
         }
         },
     item: {
-        screen: Item
+        screen: Item,
+        navigationOptions: {
+            header: () => null
+        }
     },
     paybill: {
         screen: Paybill,
@@ -43,12 +46,22 @@ const stack = createStackNavigator({
             header: () =>null
         }
     },
-    addproduct: AddProduct,
+    addproduct:{
+        screen: AddProduct,
+        navigationOptions: {
+            header: () => null
+        }
+    },
     register: {
         screen: Register,
         navigationOptions: { header: () => null}
     },
-    itemlist: Itemlist
+    itemlist: {
+        screen: Itemlist,
+        navigationOptions: {
+            header: () => null
+        }
+    }
 },
 {
     initialRouteName:'main'

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { LinearGradient } from 'expo-linear-gradient';
+import Header from './components/header';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { onUseridChange, onPasswordChange, onButtonPress, onReset } from '../actions/paybill';
 import Textinput from './components/textinput';
@@ -91,10 +91,10 @@ class Paybill extends Component {
         }
         return (
           <Button
-            buttonLabel={'Pay'}
+            buttonLabel={'Pay '}
             disabled={this.props.show_fingerprint}
             onPressaction={this.onButtonPresss}
-            style={{ marginTop: upadding }}
+            style={{ marginTop: upadding*2, borderRadius:24 }}
           />
         );
       };
@@ -104,33 +104,35 @@ class Paybill extends Component {
       }
     render() {
         return (
-            <LinearGradient
-              colors={['#ADD8E6', '#add8e6E6', '#add8e6CC']}
-              style={styles.linearGradient}
-            >
+          //<LinearGradient
+          //  colors={['#A52745', '#A5274566', '#A52745CC']}
+          <Header type={'login'} navigation={this.props.navigation}>
+            <View style={styles.linearGradient}>
               <View style={styles.insideContainer}>
-                <LinearGradient
-                  colors={['#ADD8E6', '#add8e6E6', '#add8e6CC']}
-                  style={{ alignItems: 'center', justifyContent: 'center', flex: 4 }}
-                >
+                <View
+                  style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flex: 4,
+                  }}>
                   <Text style={styles.titleStyle}>{'Bank  '}</Text>
-                </LinearGradient>
-                <View style={{ padding: upadding, flex: 6 }}>
-       
-                  {this.props.error.length>0 ? (
-                  <View
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      paddingTop: upadding/2,
-                      paddingBottom: upadding/2,
-                    }}
-                  >
-                    <Text style={{ color: 'red', fontSize:upadding * 1.2}}>{this.props.error}</Text>
-                  </View>
-                ) : (
-                  <View />
-                )}
+                </View>
+                <View style={{padding: upadding, flex: 6}}>
+                  {this.props.error.length > 0 ? (
+                    <View
+                      style={{
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        paddingTop: upadding / 2,
+                        paddingBottom: upadding / 2,
+                      }}>
+                      <Text style={{color: 'red', fontSize: upadding * 1.2}}>
+                        {this.props.error}
+                      </Text>
+                    </View>
+                  ) : (
+                    <View />
+                  )}
                   <View style={styles.Individualcontainerstyle}>
                     <Textinput
                       placeholder={'Userid'}
@@ -151,80 +153,72 @@ class Paybill extends Component {
                   </View>
                   <View>{this.loadingorbutton()}</View>
                   <View
-              style={{
-                flexDirection: 'row',
-                marginTop: upadding * 2,
-                alignItems: 'center'
-              }}
-            >
-              <View
-                style={{ flex: 2, height: 0, color: 'black', borderWidth: 0.5 }}
-              />
-              <View
-                style={{
-                  flex: 4,
-                  justifyContent: 'center',
-                  alignItems: 'center'
-                }}
-              >
-                <Text style={{ fontSize: upadding * 1.2, color: 'black'  }}>
-                  {'unregistered user ?'}
-                </Text>
-              </View>
-              <View
-                style={{ flex: 2, height: 0, color: 'black', borderWidth: 0.5 }}
-              />
-            </View>
-            <View>
-              <Button
-                buttonLabel={'Register to bank'}
-                style={{ marginTop: upadding }}
-                onPressaction={this.onSignuppress}
-              />
-            </View>
-                  {/* <View
                     style={{
                       flexDirection: 'row',
                       marginTop: upadding * 2,
-                      alignItems: 'center'
-                    }}
-                  >
-                      {this.state.authenticated?<Text>{"Authentication Successful"}</Text>:<View/>}
-                  </View> */}
-                  {/* <View>
+                      alignItems: 'center',
+                    }}>
+                    <View
+                      style={{
+                        flex: 2,
+                        height: 0,
+                        color: 'black',
+                        borderWidth: 0.5,
+                      }}
+                    />
+                    <View
+                      style={{
+                        flex: 4,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                      }}>
+                      <Text style={{fontSize: upadding * 1.2, color: 'black'}}>
+                        {'unregistered user ?'}
+                      </Text>
+                    </View>
+                    <View
+                      style={{
+                        flex: 2,
+                        height: 0,
+                        color: 'black',
+                        borderWidth: 0.5,
+                      }}
+                    />
+                  </View>
+                  <View>
                     <Button
-                      buttonLabel={'Signup'}
-                      style={{ marginTop: upadding }}
+                      buttonLabel={'Register to bank  '}
+                      style={{marginTop: upadding, borderRadius: 24}}
                       onPressaction={this.onSignuppress}
                     />
-                  </View> */}
+                  </View>
                 </View>
                 <Modal
-          animationType="slide"
-          visible={this.props.show_fingerprint}
-          onShow={this.scanFingerPrint}>
-          <View style={styles.modal}>
-            <View style={styles.innerContainer}>
-                <Text>{'Please provide your fingerprint'}</Text>
-              <Image
-                style={{ width: 128, height: 128 }}
-                source={require('./picture/fingerprint.png')}
-              />
-              <TouchableHighlight
-                onPress={async () => {
-                  LocalAuthentication.cancelAuthenticate();
-                  this.props.onReset();
-                  this.props.navigation.navigate('itemlist');
-                }}>
-                <Text style={{ color: 'red', fontSize: 16 }}>Cancel</Text>
-              </TouchableHighlight>
-            </View>
-          </View>
-        </Modal>
+                  animationType="slide"
+                  visible={this.props.show_fingerprint}
+                  onShow={this.scanFingerPrint}>
+                  <View style={styles.modal}>
+                    <View style={styles.innerContainer}>
+                      <Text>{'Please provide your fingerprint'}</Text>
+                      <Image
+                        style={{width: 128, height: 128}}
+                        source={require('./picture/fingerprint.png')}
+                      />
+                      <TouchableHighlight
+                        onPress={async () => {
+                          LocalAuthentication.cancelAuthenticate();
+                          this.props.onReset();
+                          this.props.navigation.navigate('itemlist');
+                        }}>
+                        <Text style={{color: 'red', fontSize: 16}}>Cancel</Text>
+                      </TouchableHighlight>
+                    </View>
+                  </View>
+                </Modal>
               </View>
-             
-            </LinearGradient>
-          );
+            </View>
+          </Header>
+        );
     }
 }
 
@@ -267,7 +261,6 @@ const styles = StyleSheet.create({
       width: SCREEN_WIDTH * 0.9,
       borderRadius: upadding,
       backgroundColor: 'white',
-      elevation: 5,
       marginTop: upadding * 2
     },
     textStyle: {
