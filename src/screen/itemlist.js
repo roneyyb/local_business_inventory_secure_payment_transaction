@@ -79,27 +79,26 @@ class ItemList extends Component {
                       alignItems: 'center',
                       justifyContent: 'space-evenly',
                       elevation:2,
-                      //borderBottomWidth:0.5,
-                      //borderBottomColor:'#222',
-                      paddingVertical:10
+                      backgroundColor:'#ffffff',
+                      paddingVertical:0
                     }}>
                     <Button
                       buttonLabel={'Add more item  '}
                       disabled={false}
                       onPressaction={this.addItem}
-                      style={{width: 200}}
+                      style={{width: 200,marginTop:10,marginBottom:5 }}
                     />
                     <Button
                       buttonLabel={'Settle Payment  '}
                       disabled={false}
                       onPressaction={this.settlePayment}
-                      style={{width: 200, marginTop: 20, marginBottom: 20}}
+                      style={{width: 200, marginTop: 10, marginBottom: 5}}
                     />
                   </View>
                   <ScrollView>
                     <View style={{alignItems: 'center', marginTop: 10}}>
                       {this.props.itemlist.map((item, index) => (
-                        <Item item={item} />
+                        <Item item={item} index={index}/>
                       ))}
                     </View>
                   </ScrollView>

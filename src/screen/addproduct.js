@@ -15,7 +15,6 @@ import axios from 'axios';
 import {SafeAreaConsumer} from 'react-native-safe-area-context';
 import Input from './components/TextInput';
 import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
-import {showLocation} from 'react-native-map-link';
 
 export default class Add extends Component {
   state = {
@@ -191,7 +190,7 @@ export default class Add extends Component {
                       value={this.state.product_expirydate}
                     />
                     <Input
-                      placeholder="Product image"
+                      placeholder="Product image url from internet"
                       containerStyle={{marginTop: 20}}
                       errorStyle={{color: 'red'}}
                       onChangeText={(text) => {

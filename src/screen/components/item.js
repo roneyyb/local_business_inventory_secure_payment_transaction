@@ -59,7 +59,7 @@ export default function renderItems(props) {
           }}
           style={styles.textInputStyle}
         />
-        <View
+        {/* <View
           style={{
             flexDirection: 'row',
             marginTop: 20,
@@ -71,7 +71,7 @@ export default function renderItems(props) {
            >
             <Text style={[styles.textStyle,{color:'black'}]}>{'Remove '}</Text>
           </TouchableOpacity>
-          {/* <TouchableOpacity
+           <TouchableOpacity
             style={styles.buttonStyle}
             // onPress={() => {
             //   console.log(this.state.quantity);
@@ -79,8 +79,8 @@ export default function renderItems(props) {
             // }}
             >
             <Text style={styles.textStyle}>{'Update '}</Text>
-          </TouchableOpacity> */}
-        </View>
+          </TouchableOpacity> 
+        </View> */}
       </View>
     </View>
   );
