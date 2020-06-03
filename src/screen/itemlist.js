@@ -110,7 +110,6 @@ class ItemList extends Component {
 }
 
 const mapStateToProps = (state) => {
-    console.log('state', state);
     return {
     totalprice: state.itemlist.total_price,
     itemlist: state.itemlist.items

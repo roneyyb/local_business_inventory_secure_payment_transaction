@@ -131,7 +131,6 @@ class BarcodeScanner extends React.Component {
     function isNetworkError(err) {
       return !!err.isAxiosError && !err.response;
     }
-    console.log('error');
     let message;
     let title;
     if (isNetworkError(error)) {
@@ -150,12 +149,10 @@ class BarcodeScanner extends React.Component {
   }
 
   fetchProductDetails = (barcodenumber) => {
-    console.log(barcodenumber);
     axios
       .get(`${Server.url}/getProduct/${barcodenumber}`)
       .then((response) => {
         let res = response.data;
-        console.log('product', res.product);
         this.setState({
           product: res.product,
           isVisible: true,
@@ -168,7 +165,6 @@ class BarcodeScanner extends React.Component {
   };
 
   handleBarCodeScanned = ({type, data}) => {
-    console.log(type);
     this.setState({isLoading: true});
     this.fetchProductDetails(data);
   };
@@ -177,7 +173,6 @@ class BarcodeScanner extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state', state);
   return {
     totalprice: state.itemlist.total_price,
     itemlist: state.itemlist.items,

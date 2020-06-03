@@ -158,7 +158,7 @@ export default class SignUp extends React.Component {
                   justifyContent: 'center',
                   flex: 4,
                 }}>
-                <Text style={styles.titleStyle}>{'BANK '}</Text>
+                <Text style={styles.titleStyle}>{'REGISTER TO BANK '}</Text>
               </View>
               <View style={{padding: upadding, flex: 8}}>
                 {this.state.error.length > 0 ? (
@@ -233,7 +233,7 @@ export default class SignUp extends React.Component {
                   <Textinput
                     onChange={this.onChangenumbers.bind(this)}
                     error={this.state.error2}
-                    secureTextEntry={true}
+                    secureTextEntry={false}
                     autocorrect={false}
                     placeholder="phone-number"
                     value={this.state.number}
@@ -243,7 +243,7 @@ export default class SignUp extends React.Component {
                   <Textinput
                     onChange={this.onChangebalances.bind(this)}
                     error={''}
-                    secureTextEntry={true}
+                    secureTextEntry={false}
                     autocorrect={false}
                     placeholder="account-balance"
                     value={this.state.balance}

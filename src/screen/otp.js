@@ -55,7 +55,7 @@ class Otp extends Component {
           );
         }
         return (
-            <Button onPressaction={this.onSubmitotp} disabled={false} buttonLabel={'Submit'} style={{ width:100, marginTop:200}}/>
+            <Button onPressaction={this.onSubmitotp} disabled={false} buttonLabel={'Submit '} style={{ width:100, marginTop:200}}/>
         );
       };
 
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
         flexDirection:'column',
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:'#ADD8E6'
+        backgroundColor:'#A52745'
     },
     Textstyle: {
         fontSize:20,
